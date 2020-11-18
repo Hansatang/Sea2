@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?> <students>
+	<student>
+		<firstname>Allan</firstname>
+		<lastname>mark</lastname>
+		<country>marki</country>
+	</student>
+	<student>
+		<firstname>Bob</firstname>
+		<lastname>dark</lastname>
+		<country>darki</country>
+	</student>
+	<student>
+		<firstname>Carl</firstname>
+		<lastname>kark</lastname>
+		<country>karki</country>
+	</student>
+</students>

@@ -37,6 +37,7 @@ public class Calculator extends Application
   private Button clear;
   private MyActionListener listener;
   private Clearer clear1;
+  private int k;
 
   public void start(Stage window)
   {
@@ -54,7 +55,6 @@ public class Calculator extends Application
     clear = new Button("Clear");
     clear.setPrefWidth(300);
     clear.setOnAction(clear1);
-
 
     b1 = new Button("7");
     b1.setOnAction(listener);
@@ -173,6 +173,7 @@ public class Calculator extends Application
     g1.add(b16, 3, 3);
 
     calculation = "";
+    int k = 0;
 
     mainPane.getChildren().add(textField);
     mainPane.getChildren().add(g1);
@@ -196,23 +197,27 @@ public class Calculator extends Application
     }
   }
 
+  public int calcc(String rownanie)
+  {
+
+  }
+
   private class MyActionListener implements EventHandler<ActionEvent>
   {
     public void handle(ActionEvent e)
     {
       System.out.println("active");
-      String y2= "";
+      String y2 = "";
       if (e.getSource() == b12)
       {
 
-        if (calculation.contains(".") &&calculation.contains("-"))
+        if (calculation.contains(".") && calculation.contains("-"))
         {
           System.out.println("robot");
           String[] str = calculation.split("-");
-          double l = Double.parseDouble(str[0])-Double.parseDouble(str[1]);
+          double l = Double.parseDouble(str[0]) - Double.parseDouble(str[1]);
           String p = String.valueOf(l);
           textField.setText(p);
-
 
         }
         else if (!(calculation.contains(".")) && calculation.contains("-"))
@@ -224,14 +229,13 @@ public class Calculator extends Application
 
         }
 
-        if (calculation.contains(".") &&calculation.contains("+"))
+        if (calculation.contains(".") && calculation.contains("+"))
         {
           System.out.println("robot");
           String[] str = calculation.split("\\+");
-          double l = Double.parseDouble(str[0])+Double.parseDouble(str[1]);
+          double l = Double.parseDouble(str[0]) + Double.parseDouble(str[1]);
           String p = String.valueOf(l);
           textField.setText(p);
-
 
         }
         else if (!(calculation.contains(".")) && calculation.contains("+"))
@@ -243,14 +247,13 @@ public class Calculator extends Application
 
         }
 
-        if (calculation.contains(".") &&calculation.contains("*"))
+        if (calculation.contains(".") && calculation.contains("*"))
         {
           System.out.println("robot");
           String[] str = calculation.split("\\*");
-          double l = Double.parseDouble(str[0])*Double.parseDouble(str[1]);
+          double l = Double.parseDouble(str[0]) * Double.parseDouble(str[1]);
           String p = String.valueOf(l);
           textField.setText(p);
-
 
         }
         else if (!(calculation.contains(".")) && calculation.contains("*"))
@@ -262,14 +265,13 @@ public class Calculator extends Application
 
         }
 
-        if (calculation.contains(".") &&calculation.contains("/"))
+        if (calculation.contains(".") && calculation.contains("/"))
         {
           System.out.println("robot");
           String[] str = calculation.split("/");
-          double l = Double.parseDouble(str[0])/Double.parseDouble(str[1]);
+          double l = Double.parseDouble(str[0]) / Double.parseDouble(str[1]);
           String p = String.valueOf(l);
           textField.setText(p);
-
 
         }
         else if (!(calculation.contains(".")) && calculation.contains("/"))
@@ -282,18 +284,92 @@ public class Calculator extends Application
         }
 
       }
-int k=0;
+
       for (int i = 0; i < btc.length; i++)
       {
         if (e.getSource() == btc[i])
         {
+          if (k!=0)
+          {
+
+            if (calculation.contains(".") && calculation.contains("-"))
+            {
+              System.out.println("robot1");
+              String[] str = calculation.split("-");
+              double l = Double.parseDouble(str[0]) - Double.parseDouble(str[1]);
+              calculation= String.valueOf(l);
+
+            }
+            else if (!(calculation.contains(".")) && calculation.contains("-"))
+            {
+              System.out.println("robot1");
+              String[] str = calculation.split("-");
+              int l = Integer.parseInt(str[0]) - Integer.parseInt(str[1]);
+              calculation= String.valueOf(l);
+
+            }
+
+            if (calculation.contains(".") && calculation.contains("+"))
+            {
+              System.out.println("robot1");
+              String[] str = calculation.split("\\+");
+              double l = Double.parseDouble(str[0]) + Double.parseDouble(str[1]);
+              calculation= String.valueOf(l);
+
+            }
+            else if (!(calculation.contains(".")) && calculation.contains("+"))
+            {
+              System.out.println("robot1");
+              String[] str = calculation.split("\\+");
+              int l = Integer.parseInt(str[0]) + Integer.parseInt(str[1]);
+              calculation= String.valueOf(l);
+
+            }
+
+            if (calculation.contains(".") && calculation.contains("*"))
+            {
+              System.out.println("robot1");
+              String[] str = calculation.split("\\*");
+              double l = Double.parseDouble(str[0]) * Double.parseDouble(str[1]);
+              calculation= String.valueOf(l);
+
+            }
+            else if (!(calculation.contains(".")) && calculation.contains("*"))
+            {
+              System.out.println("robot1");
+              String[] str = calculation.split("\\*");
+              int l = Integer.parseInt(str[0]) * Integer.parseInt(str[1]);
+              calculation= String.valueOf(l);
+
+            }
+
+            if (calculation.contains(".") && calculation.contains("/"))
+            {
+              System.out.println("robot1");
+              String[] str = calculation.split("/");
+              double l = Double.parseDouble(str[0]) / Double.parseDouble(str[1]);
+              calculation= String.valueOf(l);
+
+            }
+            else if (!(calculation.contains(".")) && calculation.contains("/"))
+            {
+              System.out.println("robot1");
+              String[] str = calculation.split("/");
+              int l = Integer.parseInt(str[0]) / Integer.parseInt(str[1]);
+              calculation= String.valueOf(l);
+
+            }
+          }
+
           System.out.println("ll");
           calculation += btc[i].getText();
           textField.setText(calculation);
-
+          k++;
 
           break;
         }
+
+
       }
 
       for (int i = 0; i < btn.length; i++)

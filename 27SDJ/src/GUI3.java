@@ -33,7 +33,7 @@ public class GUI3 extends Application
     mainPane.getChildren().add(textlabel);
     mainPane.getChildren().add(textField);
     mainPane.getChildren().add(clickMeButton);
-    scene = new Scene(mainPane, 272, 120);
+    scene = new Scene(mainPane, 750, 500);
     window.setScene(scene);
     window.show();
   }

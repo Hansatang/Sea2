@@ -39,14 +39,26 @@ public class StudentFileAdapterGUI extends Application
    private TabPane tabPane;
    private Tab allStudentsTab;
    private Tab changeCountryTab;
+   private Tab studentFromCountryTab;
+
+   private VBox studentFromCountryPane;
 
    private TextArea allStudentsArea;
+   private TextArea StudentsCountryArea;
+   private TextField con;
+
+
    private ScrollPane allStudentsScrollPane;
+   private ScrollPane StudentsCountryScrollPane;
 
    private Button getButton;
    private Button updateButton;
 
+   private Button getCountryButton;
+   private Button updateCountryButton;
+
    private VBox allStudentsPane;
+   private HBox h1;
 
    private VBox changeCountryPane;
    private HBox changeCountryTopPane;
@@ -55,6 +67,7 @@ public class StudentFileAdapterGUI extends Application
    private Label firstNameLabel;
    private Label lastNameLabel;
    private Label countryLabel;
+   private Label l1;
 
    private GridPane changeCountryInputPane;
 
@@ -96,6 +109,30 @@ public class StudentFileAdapterGUI extends Application
 
       allStudentsTab = new Tab("All Students");
       changeCountryTab = new Tab("Change Country");
+      studentFromCountryTab = new Tab("Student from Country");
+
+      StudentsCountryArea = new TextArea();
+      StudentsCountryArea.setPrefRowCount(16);
+      StudentsCountryArea.setPrefColumnCount(50);
+      StudentsCountryArea.setEditable(false);
+      StudentsCountryScrollPane = new ScrollPane(StudentsCountryArea);
+      StudentsCountryScrollPane.setFitToWidth(true);
+
+
+      getCountryButton = new Button("Get Students from Country");
+      getCountryButton.setOnAction(listener);
+      l1 = new Label("Country");
+      con=new TextField();
+      h1 = new HBox(l1,con,getCountryButton);
+      h1.setAlignment(Pos.CENTER_LEFT);
+      updateCountryButton = new Button("Update");
+      updateCountryButton.setOnAction(listener);
+
+      studentFromCountryPane = new VBox(10);
+      studentFromCountryPane.setAlignment(Pos.CENTER);
+      studentFromCountryPane.getChildren().add(StudentsCountryScrollPane );
+      studentFromCountryPane.getChildren().add(h1);
+
 
       allStudentsArea = new TextArea();
       allStudentsArea.setPrefRowCount(16);
@@ -161,10 +198,12 @@ public class StudentFileAdapterGUI extends Application
 
       allStudentsTab.setContent(allStudentsPane);
       changeCountryTab.setContent(changeCountryPane);
+      studentFromCountryTab.setContent(studentFromCountryPane);
 
       tabPane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
       tabPane.getTabs().add(allStudentsTab);
       tabPane.getTabs().add(changeCountryTab);
+      tabPane.getTabs().add(studentFromCountryTab);
 
       exitMenuItem = new MenuItem("Exit");
       exitMenuItem.setOnAction(listener);
@@ -234,10 +273,30 @@ public class StudentFileAdapterGUI extends Application
       allStudentsArea.setText(students.toString());
    }
 
+   private void updateStudentFromCountryArea()
+   {
+      StudentList students = adapter.getAllStudents();
+      StudentsCountryArea.setText(students.toString());
+   }
+
    private class MyActionListener implements EventHandler<ActionEvent>
    {
       public void handle(ActionEvent e)
       {
+         if (e.getSource() == getCountryButton)
+         {
+            if (con.getText().equals(""))
+            {
+               StudentsCountryArea.clear();
+               updateStudentFromCountryArea();
+            }
+            else
+            {
+               StudentsCountryArea.clear();
+               StudentList students = adapter.getStudentsFrom(con.getText());
+               StudentsCountryArea.setText(students.toString());
+            }
+         }
          if (e.getSource() == getButton)
          {
             updateStudentArea();
@@ -329,10 +388,16 @@ public class StudentFileAdapterGUI extends Application
          if (newTab == allStudentsTab)
          {
             updateStudentArea();
+
          }
          else if (newTab == changeCountryTab)
          {
             updateStudentBox();
+         }
+         else if (newTab == studentFromCountryTab)
+         {
+            updateStudentFromCountryArea();
+            con.setText("");
          }
       }
    }

@@ -105,5 +105,33 @@ public class StudentFileAdapter
       saveStudents(students);
    }
 
+   public String[] getCountries()
+   {
+      StudentList students = new StudentList();
+String[] str = new String[20];
+      try
+      {
+         students = (StudentList)mfio.readObjectFromFile(fileName);
+      }
+      catch (FileNotFoundException e)
+      {
+         System.out.println("File not found");
+      }
+      catch (IOException e)
+      {
+         System.out.println("IO Error reading file");
+      }
+      catch (ClassNotFoundException e)
+      {
+         System.out.println("Class Not Found");
+      }
+      for (int i = 0; i < students.size(); i++)
+      {
+         int k=0;
+         str[k]=students.get(i).getCountry();
+      }
+      return str;
+   }
+
    // Add more methods to the adapter depending on what you wish to do
 }

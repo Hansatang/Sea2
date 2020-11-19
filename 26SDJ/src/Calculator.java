@@ -37,6 +37,8 @@ public class Calculator extends Application
   private Button clear;
   private MyActionListener listener;
   private Clearer clear1;
+  private Remover remove1;
+  private Button remove;
   private int k;
 
   public void start(Stage window)
@@ -49,10 +51,15 @@ public class Calculator extends Application
     textField.setAlignment(Pos.CENTER_RIGHT);
     listener = new MyActionListener();
     clear1 = new Clearer();
+    remove1 = new Remover();
 
     GridPane g1 = new GridPane();
 
-    clear = new Button("Clear");
+    remove = new Button("Clear");
+    remove.setPrefWidth(300);
+    remove.setOnAction(remove1);
+
+    clear = new Button("Remove");
     clear.setPrefWidth(300);
     clear.setOnAction(clear1);
 
@@ -178,9 +185,30 @@ public class Calculator extends Application
     mainPane.getChildren().add(textField);
     mainPane.getChildren().add(g1);
     mainPane.getChildren().add(clear);
+    mainPane.getChildren().add(remove);
     scene = new Scene(mainPane, 300, 250);
     window.setScene(scene);
     window.show();
+  }
+
+  private class Remover implements EventHandler<ActionEvent>
+  {
+    public void handle(ActionEvent e)
+    {
+      System.out.println("M");
+      if (e.getSource() == remove)
+      {
+        String temp1 ="";
+        String[] temp = calculation.split("");
+        for (int i = 0; i < calculation.length()-1; i++)
+        {
+          temp1+=temp[i];
+        }
+        calculation=temp1;
+        textField.setText(calculation);
+
+      }
+    }
   }
 
   private class Clearer implements EventHandler<ActionEvent>
@@ -194,13 +222,14 @@ public class Calculator extends Application
         calculation = "";
         textField.setText("");
         k = 0;
+
       }
     }
   }
 
   public String calcc(String rownanie)
   {
-    String p = null;
+    String p = rownanie;
 
     if (rownanie.contains(".") && rownanie.contains("-"))
     {
@@ -299,9 +328,11 @@ public class Calculator extends Application
       {
         p=String.valueOf(str[0]);
       }
-      double l = Double.parseDouble(str[0]) / Double.parseDouble(str[1]);
-      p = String.valueOf(l);
-
+      else
+      {
+        double l = Double.parseDouble(str[0]) / Double.parseDouble(str[1]);
+        p = String.valueOf(l);
+      }
     }
     else if (!(rownanie.contains(".")) && rownanie.contains("/"))
     {
@@ -311,17 +342,12 @@ public class Calculator extends Application
       {
         p=String.valueOf(str[0]);
       }
-      int l = Integer.parseInt(str[0]) / Integer.parseInt(str[1]);
-      p = String.valueOf(l);
-
+      else
+      {
+        int l = Integer.parseInt(str[0]) / Integer.parseInt(str[1]);
+        p = String.valueOf(l);
+      }
     }
-    //    else if (rownanie.contains(".") && !(rownanie.contains("/")) && !(rownanie.contains("\\*")) && !(rownanie.contains("\\+")) && !(rownanie.contains("-")))
-    //    {
-    //      System.out.println("technologia");
-    //      double l = Double.parseDouble((calculation));
-    //      p = String.valueOf(l);
-    //
-    //    }
 
     return p;
   }
@@ -331,10 +357,15 @@ public class Calculator extends Application
     public void handle(ActionEvent e)
     {
       System.out.println("active");
-      String y2 = "";
       if (e.getSource() == b12)
       {
         textField.setText(calcc(calculation));
+        calculation=calcc(calculation);
+        if (calcc(calculation)==null)
+        {
+          calculation="";
+          textField.setText(calculation);
+        }
 
       }
 
@@ -362,8 +393,10 @@ public class Calculator extends Application
       {
         if (e.getSource() == btn[i])
         {
+          System.out.println(calculation);
           System.out.println("ll");
           calculation += btn[i].getText();
+          System.out.println(calculation);
           textField.setText(calculation);
 
           break;

@@ -1,4 +1,6 @@
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,9 +14,17 @@ public class Windows extends Application
 {
   private Scene scene;
   private FlowPane mainPane;
-  private Label textLabel;
-  private TextField textField;
+  private Label l1;
+  private Label l2;
+  private TextField t1;
+  private TextField t2;
   private Button clickMeButton;
+  private Event1 ev1;
+  private Button btn1;
+  private Button btn2;
+  private Button btn3;
+  private RadioButton radio1;
+  private RadioButton radio2;
 
   public void start(Stage window)
   {
@@ -22,12 +32,16 @@ public class Windows extends Application
 
     BorderPane mainPane = new BorderPane();
     VBox v1 = new VBox(5);
-    v1.setPadding(new Insets(5,15,0,15));
+    v1.setPadding(new Insets(5, 15, 0, 15));
     v1.setSpacing(10);
     v1.setAlignment(Pos.CENTER);
-    Button btn1 = new Button("Button 1");
-    Button btn2 = new Button("Button 2");
-    Button btn3 = new Button("Button 3");
+    ev1 = new Event1();
+    btn1 = new Button("Ok");
+    btn1.setOnAction(ev1);
+    btn2 = new Button("Cancel");
+    btn2.setOnAction(ev1);
+    btn3 = new Button("Clear");
+    btn3.setOnAction(ev1);
     v1.getChildren().add(btn1);
     v1.getChildren().add(btn2);
     v1.getChildren().add(btn3);
@@ -35,15 +49,15 @@ public class Windows extends Application
     VBox v2 = new VBox(5);
     v2.setSpacing(10);
     v2.setAlignment(Pos.CENTER);
-    Label l1 = new Label("X: ");
-    TextField t1 = new TextField();
+    l1 = new Label("X: ");
+    t1 = new TextField();
     t1.setPrefWidth(150);
     FlowPane fs1 = new FlowPane();
     fs1.setAlignment(Pos.CENTER);
     fs1.getChildren().add(l1);
     fs1.getChildren().add(t1);
-    Label l2 = new Label("Y: ");
-    TextField t2 = new TextField();
+    l2 = new Label("Y: ");
+    t2 = new TextField();
     t2.setPrefWidth(150);
     FlowPane fs2 = new FlowPane();
     fs2.setAlignment(Pos.CENTER);
@@ -55,10 +69,10 @@ public class Windows extends Application
     VBox v3 = new VBox(10);
     v3.setSpacing(10);
     v3.setAlignment(Pos.CENTER_LEFT);
-    v3.setPadding(new Insets(0,15,0,15));
+    v3.setPadding(new Insets(0, 15, 0, 15));
     ToggleGroup group = new ToggleGroup();
-    RadioButton radio1 = new RadioButton("Exit on ok");
-    RadioButton radio2 = new RadioButton("Exit on cancel");
+    radio1 = new RadioButton("Exit on ok");
+    radio2 = new RadioButton("Exit on cancel");
 
     radio1.setToggleGroup(group);
     radio2.setToggleGroup(group);
@@ -71,5 +85,43 @@ public class Windows extends Application
     scene = new Scene(mainPane, 450, 120);
     window.setScene(scene);
     window.show();
+  }
+
+  private class Event1 implements EventHandler<ActionEvent>
+  {
+    public void handle(ActionEvent e)
+    {
+      if (e.getSource() == btn2)
+      {
+
+        if (radio2.isSelected())
+        {
+          System.exit(0);
+        }
+
+      }
+      else if (e.getSource() == btn1)
+      {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+            "Do you really want to exit the program?"+t1.getText()+t2.getText(), ButtonType.YES,
+            ButtonType.NO);
+        alert.setTitle("Exit");
+        alert.setHeaderText(null);
+        alert.setContentText(t1.getText()+"\n"+t2.getText());
+
+
+        alert.showAndWait();
+
+        if (radio1.isSelected() && alert.getResult() == ButtonType.YES)
+        {
+          System.exit(0);
+        }
+      }
+      else if (e.getSource() == btn3)
+      {
+        t1.setText("");
+        t2.setText("");
+      }
+    }
   }
 }

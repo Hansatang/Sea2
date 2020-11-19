@@ -11,7 +11,7 @@ public class LoadInitialData
       String[] studentArray = null;
       try
       {
-         studentArray = mtfio.readArrayFromFile("students.txt");
+         studentArray = mtfio.readArrayFromFile("C:\\Users\\krzys\\IdeaProjects\\Workspace\\1Student\\src\\students.txt");
                       
          for(int i = 0; i<studentArray.length; i++)
          {

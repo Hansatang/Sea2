@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/1111/1111.iml" filepath="$PROJECT_DIR$/1111/1111.iml" />
+      <module fileurl="file://$PROJECT_DIR$/1NewNewNewStudent/1NewNewNewStudent.iml" filepath="$PROJECT_DIR$/1NewNewNewStudent/1NewNewNewStudent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/1NewNewStudent/1NewNewStudent.iml" filepath="$PROJECT_DIR$/1NewNewStudent/1NewNewStudent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/1NewStudent/1NewStudent.iml" filepath="$PROJECT_DIR$/1NewStudent/1NewStudent.iml" />
       <module fileurl="file://$PROJECT_DIR$/1Student/1Student.iml" filepath="$PROJECT_DIR$/1Student/1Student.iml" />
+      <module fileurl="file://$PROJECT_DIR$/1Theory/1Theory.iml" filepath="$PROJECT_DIR$/1Theory/1Theory.iml" />
       <module fileurl="file://$PROJECT_DIR$/21SDJ/21SDJ.iml" filepath="$PROJECT_DIR$/21SDJ/21SDJ.iml" />
       <module fileurl="file://$PROJECT_DIR$/22SDJ/22SDJ.iml" filepath="$PROJECT_DIR$/22SDJ/22SDJ.iml" />
       <module fileurl="file://$PROJECT_DIR$/23SDJ/23SDJ.iml" filepath="$PROJECT_DIR$/23SDJ/23SDJ.iml" />
@@ -10,9 +15,10 @@
       <module fileurl="file://$PROJECT_DIR$/25SDJ/25SDJ.iml" filepath="$PROJECT_DIR$/25SDJ/25SDJ.iml" />
       <module fileurl="file://$PROJECT_DIR$/26SDJ/26SDJ.iml" filepath="$PROJECT_DIR$/26SDJ/26SDJ.iml" />
       <module fileurl="file://$PROJECT_DIR$/27SDJ/27SDJ.iml" filepath="$PROJECT_DIR$/27SDJ/27SDJ.iml" />
+      <module fileurl="file://$PROJECT_DIR$/3Prog/3Prog.iml" filepath="$PROJECT_DIR$/3Prog/3Prog.iml" />
       <module fileurl="file://$PROJECT_DIR$/AKrystian/AKrystian.iml" filepath="$PROJECT_DIR$/AKrystian/AKrystian.iml" />
       <module fileurl="file://$PROJECT_DIR$/22SDJ/B.iml" filepath="$PROJECT_DIR$/22SDJ/B.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Esman/Esman.iml" filepath="$PROJECT_DIR$/Esman/Esman.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Cont/Cont.iml" filepath="$PROJECT_DIR$/Cont/Cont.iml" />
       <module fileurl="file://$PROJECT_DIR$/Hand1/Hand1.iml" filepath="$PROJECT_DIR$/Hand1/Hand1.iml" />
       <module fileurl="file://$PROJECT_DIR$/MyFirstModule/MyFirstModule.iml" filepath="$PROJECT_DIR$/MyFirstModule/MyFirstModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/ProgHand2/ProgHand2.iml" filepath="$PROJECT_DIR$/ProgHand2/ProgHand2.iml" />
